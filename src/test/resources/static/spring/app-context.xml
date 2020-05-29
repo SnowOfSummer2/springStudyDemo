@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <aop:aspectj-autoproxy/>
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/View/"/>
+        <!-- 可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <bean id="compactDisc" class="com.betterchengpu.bussiness.SgtPeppers"/>
+
+    <bean id="blanDisc" class="com.betterchengpu.bussiness.BlankDisc">
+        <constructor-arg value="Sgt. Peppers loneyly Hearts cllub Band"/>
+        <constructor-arg value="Cheng pu"/>
+        <constructor-arg>
+            <list>
+                <value>Gui xiong</value>
+                <value>Zhou jun</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="cdPlayer" class="com.betterchengpu.CDPlayer"
+          c:_0-ref="blanDisc"/>
+</beans>
